@@ -12,11 +12,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <group string="Dates" position="after">
-                    <group string="Payment">
-                        <field name="payment_mode_id" select="1" widget="selection"/>
-                    </group>
-            </group>
+            <field name="zip" position="after">
+                <button name="fetch_adress_from_cep" type="object" icon="gtk-find"/>
+            </field>
         </field>
     </record>
 </data>
