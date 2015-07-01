@@ -35,6 +35,7 @@
         'base',
     ],
     'data': [
+        'view/res_partner.xml'
     ],
     'demo': [
     ],
