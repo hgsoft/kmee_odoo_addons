@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2015 KMEE (http://www.kmee.com.br/)
+    @author Michell Stuttgart <michell.stuttgart@kmee.com.br>
+    The licence is in the file __openerp__.py
+-->
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="name">fetch.adress.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group string="Dates" position="after">
+                    <group string="Payment">
+                        <field name="payment_mode_id" select="1" widget="selection"/>
+                    </group>
+            </group>
+        </field>
+    </record>
+</data>
+</openerp>
