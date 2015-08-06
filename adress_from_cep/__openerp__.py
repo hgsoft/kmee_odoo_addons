@@ -35,7 +35,8 @@
         'base',
     ],
     'data': [
-        'view/res_partner.xml'
+        'view/res_partner.xml',
+        'view/res_company.xml',
     ],
     'demo': [
     ],
