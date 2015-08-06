@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Autocomplete Adress from CEP for Odoo
+#    Autocomplete Address from CEP for Odoo
 #    Copyright (C) 2015 KMEE (http://www.kmee.com.br)
 #    @author Michell Stuttgart <michell.stuttgart@kmee.com.br>
 #
@@ -19,6 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp import pooler
 from openerp.osv import orm, osv
 from openerp.tools.translate import _
 
@@ -26,46 +27,49 @@ from suds.client import Client, TransportError
 from suds import WebFault
 
 
-class ResPartner(orm.Model):
+class WebServiceCEP(object):
 
-    _inherit = 'res.partner'
+    @staticmethod
+    def get_address_from_cep(cr, uid, ids, model, context=None):
 
-    def fetch_adress_from_cep(self, cr, uid, ids, context=None):
+        pool = pooler.get_pool(cr.dbname)
 
-        for obj_partner in self.browse(cr, uid, ids, context=context):
+        for obj_partner in pool.get(model).browse(cr, uid, ids, context=context):
 
             cep = obj_partner.zip
+            cep = cep.replace('-', '')
 
             if obj_partner.country_id and obj_partner.country_id.code != 'BR':
-                msg = 'Adress from cep module work only Brazil country!'
+                msg = 'Address from cep module work only Brazil country!'
                 raise osv.except_osv(_('Error!'), _(msg))
+            elif cep:
 
-            if cep and len(cep) == 9:
+                if len(cep) != 8:
+                    msg = 'CEP invalido! O CEP fornecido deve possuir 8 digitos.'
+                    raise osv.except_osv(_('Error!'), _(msg))
 
                 url_prod = 'https://apps.correios.com.br/SigepMasterJPA' \
                            '/AtendeClienteService/AtendeCliente?wsdl'
 
                 try:
-                    # Remove hifen of cep
-                    cep = cep.replace('-', '')
 
-                    # Inciamos o cliente do webservice
+                    # Connect Brazil Correios webservice
                     res = Client(url_prod).service.consultaCEP(cep)
 
                     # Search state with state_code
-                    state_ids = self.pool.get('res.country.state').search(
+                    state_ids = pool.get('res.country.state').search(
                         cr, uid, [('code', '=', str(res.uf))])
 
                     # city name
-                    cidade = str(res.cidade.encode('utf8'))
+                    city_name = str(res.cidade.encode('utf8'))
 
                     # search city with name and state
-                    city_ids = self.pool.get('l10n_br_base.city').search(
-                        cr, uid, [('name', '=', cidade), ('state_id.id', 'in',
-                                                          state_ids)])
+                    city_ids = pool.get('l10n_br_base.city').search(
+                        cr, uid, [('name', '=', city_name),
+                                  ('state_id.id', 'in', state_ids)])
 
-                    # Buscar id do pais
-                    country_ids = self.pool.get('res.country').search(
+                    # Search Brazil id
+                    country_ids = pool.get('res.country').search(
                         cr, uid, [('code', '=', 'BR')])
 
                     vals = {
@@ -78,8 +82,8 @@ class ResPartner(orm.Model):
                         'country_id': country_ids[0] if country_ids else False,
                     }
 
-                    # Write adress
-                    self.write(cr, uid, ids, vals)
+                    # Write address
+                    pool.get(model).write(cr, uid, ids, vals)
 
                 except TransportError as e:
                     raise osv.except_osv(_('Error!'), _(e.message))
@@ -87,3 +91,4 @@ class ResPartner(orm.Model):
                     raise osv.except_osv(_('Error!'), _(e.message))
 
         return True
+

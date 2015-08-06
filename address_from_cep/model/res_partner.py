@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Autocomplete Adress from CEP for Odoo
+#    Autocomplete Address from CEP for Odoo
 #    Copyright (C) 2015 KMEE (http://www.kmee.com.br)
 #    @author Michell Stuttgart <michell.stuttgart@kmee.com.br>
 #
@@ -19,5 +19,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import res_partner
-from . import res_company
+from openerp.osv import orm
+from webservice_cep import WebServiceCEP
+
+
+class ResPartner(orm.Model):
+
+    _inherit = 'res.partner'
+
+    def fetch_address_from_cep(self, cr, uid, ids, context=None):
+
+        WebServiceCEP.get_address_from_cep(
+            cr, uid, ids, 'res.partner', context=context)
+
+        return True

@@ -8,7 +8,7 @@
     <data>
 
         <record model="ir.ui.view" id="view_partner_form">
-            <field name="name">fetch.adress.res.partner</field>
+            <field name="name">fetch.address.res.partner</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="priority">20</field>
@@ -17,7 +17,7 @@
                     <attribute name="style">width: 50%%</attribute>
                 </field>
                 <field name="zip" position="after">
-                    <button name="fetch_adress_from_cep" type="object" class="oe_inline">
+                    <button name="fetch_address_from_cep" type="object" class="oe_inline">
                         <i class="fa fa-search"/>
                     </button>
                 </field>

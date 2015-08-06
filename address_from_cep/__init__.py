@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Autocomplete Adress from CEP for Odoo
+#    Autocomplete Address from CEP for Odoo
 #    Copyright (C) 2015 KMEE (http://www.kmee.com.br)
 #    @author Michell Stuttgart <michell.stuttgart@kmee.com.br>
 #
@@ -19,34 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Autocomplete Adress from CEP',
-    'version': '0.1',
-    'category': 'Generic Modules',
-    'description': """
-    This module fill res_partner and res_company adress through of cep. This
-    search is provided from SIGEPWEB webservice of Brazil Correios.
-    """,
-    'author': 'KMEE',
-    'license': 'AGPL-3',
-    'website': 'www.kmee.com.br',
-    'depends': [
-        'base',
-    ],
-    'data': [
-        'view/res_partner.xml',
-        'view/res_company.xml',
-    ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': True,
-    'active': False,
-    'external_dependencies': {
-        'python': ['suds'],
-    }
-
-}
-
+from . import model

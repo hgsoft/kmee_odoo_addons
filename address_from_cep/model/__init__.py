@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Autocomplete Adress from CEP for Odoo
+#    Autocomplete Address from CEP for Odoo
 #    Copyright (C) 2015 KMEE (http://www.kmee.com.br)
 #    @author Michell Stuttgart <michell.stuttgart@kmee.com.br>
 #
@@ -19,4 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import model
+from . import res_partner
+from . import res_company
+from . import webservice_cep
