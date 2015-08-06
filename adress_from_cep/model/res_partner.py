@@ -64,6 +64,10 @@ class ResPartner(orm.Model):
                         cr, uid, [('name', '=', cidade), ('state_id.id', 'in',
                                                           state_ids)])
 
+                    # Buscar id do pais
+                    country_ids = self.pool.get('res.country').search(
+                        cr, uid, [('code', '=', 'BR')])
+
                     vals = {
                         'street': str(res.end.encode('utf8')),
                         'district': str(res.bairro.encode('utf8')),
@@ -71,6 +75,7 @@ class ResPartner(orm.Model):
                         else '',
                         'l10n_br_city_id': city_ids[0] if city_ids else False,
                         'state_id': state_ids[0] if state_ids else False,
+                        'country_id': country_ids[0] if country_ids else False,
                     }
 
                     # Write adress
