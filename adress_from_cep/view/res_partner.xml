@@ -11,6 +11,7 @@
             <field name="name">fetch.adress.res.partner</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">20</field>
             <field name="arch" type="xml">
                 <field name="zip" position="attributes">
                     <attribute name="style">width: 50%%</attribute>
