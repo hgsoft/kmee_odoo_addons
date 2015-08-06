@@ -30,9 +30,7 @@ from suds import WebFault
 class WebServiceCEP(object):
 
     @staticmethod
-    def get_address_from_cep(cr, uid, ids, model, context=None):
-
-        pool = pooler.get_pool(cr.dbname)
+    def get_address_from_cep(cr, uid, ids, pool, model, context=None):
 
         for obj_partner in pool.get(model).browse(cr, uid, ids, context=context):
 

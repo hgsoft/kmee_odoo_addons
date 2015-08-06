@@ -30,6 +30,6 @@ class ResCompany(orm.Model):
     def fetch_address_from_cep(self, cr, uid, ids, context=None):
 
         WebServiceCEP.get_address_from_cep(
-            cr, uid, ids, 'res.company', context=context)
+            cr, uid, ids, self.pool, 'res.company', context=context)
 
         return True

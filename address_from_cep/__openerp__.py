@@ -22,7 +22,7 @@
 
 {
     'name': 'Autocomplete Address from CEP',
-    'version': '0.1',
+    'version': '1.0',
     'category': 'Generic Modules',
     'description': """
     This module fill res_partner and res_company address through of cep. This
