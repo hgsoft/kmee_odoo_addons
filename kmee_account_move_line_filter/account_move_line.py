@@ -25,11 +25,24 @@ class account_move_line(osv.osv):
     _inherit = "account.move.line"
 
     _columns = {
-		'date_from':fields.function(lambda *a,**k:{}, method=True, type='date',string="Emissão Inicial"),
-		'date_to':fields.function(lambda *a,**k:{}, method=True, type='date',string="Emissão Final"),
-		'due_date_from':fields.function(lambda *a,**k:{}, method=True, type='date',string="Vencimento Inicial"),
-		'due_date_to':fields.function(lambda *a,**k:{}, method=True, type='date',string="Vencimento Final"),
+                'date_from':fields.function(lambda *a,**k: {},
+                                            method=True,
+                                            type='date',
+                                            string="Emissão Inicial"),
+                'date_to':fields.function(lambda *a,**k: {},
+                                          method=True,
+                                          type='date',
+                                          string="Emissão Final"),
+                'due_date_from':fields.function(lambda *a,**k: {},
+                                                method=True,
+                                                type='date',
+                                                string="Vencimento Inicial"),
+                'due_date_to':fields.function(lambda *a,**k: {},
+                                              method=True,
+                                              type='date',
+                                              string="Vencimento Final"),
     }
+
 
 class account_move_line(osv.osv):
 
@@ -37,19 +50,19 @@ class account_move_line(osv.osv):
 
     _columns = {
                 'date_from': fields.function(lambda *a, **k: {},
-                                     method=True,
-                                     type='date',
-                                     string="Emissão Inicial"),
+                                             method=True,
+                                             type='date',
+                                             string="Emissão Inicial"),
                 'date_to': fields.function(lambda *a, **k: {},
-                                     method=True,
-                                     type='date',
-                                     string="Emissão Final"),
+                                           method=True,
+                                           type='date',
+                                           string="Emissão Final"),
                 'due_date_from': fields.function(lambda *a, **k: {},
-                                     method=True,
-                                     type='date',
-                                     string="Vencimento Inicial"),
+                                                 method=True,
+                                                 type='date',
+                                                 string="Vencimento Inicial"),
                 'due_date_to': fields.function(lambda *a, **k: {},
-                                   method=True,
-                                   type='date',
-                                   string="Vencimento Final"),
+                                               method=True,
+                                               type='date',
+                                               string="Vencimento Final"),
     }
