@@ -29,11 +29,12 @@ class CrmMeeting(orm.Model):
 
     def _get_default_partner(self, cr, uid, context=None):
         res = []
-        res.append(self.pool.get('res.users').browse(cr,
-                    uid, uid, context).partner_id.id)
+        res.append(self.pool.get('res.users').browse(
+            cr, uid, uid, context).partner_id.id)
         return res
 
     _defaults = {
-        'partner_ids': lambda self, cr, uid,
-                           ctx=None: self._get_default_partner(cr,
-                           uid, context=ctx), }
+        'partner_ids': 
+            lambda self, cr, uid,
+            ctx=None: self._get_default_partner(cr,
+            uid, context=ctx), }
