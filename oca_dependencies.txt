@@ -1,0 +1,2 @@
+server-tools https://github.com/OCA/server-tools.git
+l10n-brazil https://github.com/OCA/l10n-brazil.git
