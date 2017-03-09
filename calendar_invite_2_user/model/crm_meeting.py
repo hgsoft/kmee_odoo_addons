@@ -19,7 +19,10 @@
 #
 ##############################################################################
 
-from osv import orm
+try:
+    from osv import orm
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 
 class CrmMeeting(orm.Model):
