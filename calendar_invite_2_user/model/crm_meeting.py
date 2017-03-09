@@ -36,5 +36,4 @@ class CrmMeeting(orm.Model):
     _defaults = {
         'partner_ids':
             lambda self, cr, uid,
-            ctx=None: self._get_default_partner(cr,
-                          uid, context=ctx), }
+            ctx=None: self._get_default_partner(cr, uid, context=ctx), }
